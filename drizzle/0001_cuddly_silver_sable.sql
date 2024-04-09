@@ -1,1 +1,0 @@
-ALTER TABLE `product` RENAME COLUMN `text` TO `body`;

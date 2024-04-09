@@ -1,5 +1,5 @@
 ---
-import AddToCartForm from '../pages/cart/add.astro';
+import AddToCartForm from './AddToCartForm.astro';
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
 interface Props {
@@ -40,7 +40,10 @@ const { name, description, price, id } = Astro.props;
                 </div>
             </div>
             <div class='mt-10 flex items-center'>
-                <AddToCartForm id={id} />
+                <AddToCartForm
+                    productId={id}
+                    addToCartMessage='Add to Cart'
+                />
             </div>
         </div>
     </div>

@@ -1,17 +1,26 @@
 ---
 import { getCartDb } from '../../utils/getCartDb';
+import { getCartItemsDb } from '../../utils/getCartItemsDb';
 
 export const partial = true;
 
+let count = 0;
+
 const cart = await getCartDb(Astro.cookies);
+if (cart) {
+    const items = await getCartItemsDb(cart);
+    count = items.reduce((sum, item) => sum + item.quantity, 0);
+}
 ---
 
 <div
     class='ml-4 flow-root lg:ml-6'
     id='cartStatus'
+    hx-get='/cart/status'
+    hx-trigger='cartadd from:body'
 >
     <a
-        href='#'
+        href='/cart'
         class='group -m-2 flex items-center p-2'
     >
         <svg
@@ -30,7 +39,7 @@ const cart = await getCartDb(Astro.cookies);
         </svg>
         <span
             class='ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800'
-            >{cart?.id ?? 0}</span
+            >{count}</span
         >
         <span class='sr-only'>items in cart, view bag</span>
     </a>

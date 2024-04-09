@@ -18,4 +18,8 @@ const products = [
     },
 ] satisfies NewProduct[];
 
-await db.insert(productTable).values(products).execute();
+await db
+    .insert(productTable)
+    .values(products)
+    .execute()
+    .then((sds) => console.log('Success seeded', sds.rows));

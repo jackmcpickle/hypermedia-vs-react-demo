@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "31d6d52d-866a-4bfd-b45a-924cb698a9ad",
+  "id": "c9b24f42-5c73-4459-8c17-c8ed92e81c5b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "cart_items": {
@@ -9,6 +9,20 @@
       "columns": {
         "id": {
           "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "productId": {
+          "name": "productId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cartId": {
+          "name": "cartId",
           "type": "integer",
           "primaryKey": false,
           "notNull": false,
@@ -24,12 +38,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "cart_items_id_product_id_fk": {
-          "name": "cart_items_id_product_id_fk",
+        "cart_items_productId_product_id_fk": {
+          "name": "cart_items_productId_product_id_fk",
           "tableFrom": "cart_items",
           "tableTo": "product",
           "columnsFrom": [
-            "id"
+            "productId"
           ],
           "columnsTo": [
             "id"
@@ -37,12 +51,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "cart_items_id_cart_id_fk": {
-          "name": "cart_items_id_cart_id_fk",
+        "cart_items_cartId_cart_id_fk": {
+          "name": "cart_items_cartId_cart_id_fk",
           "tableFrom": "cart_items",
           "tableTo": "cart",
           "columnsFrom": [
-            "id"
+            "cartId"
           ],
           "columnsTo": [
             "id"
@@ -62,10 +76,10 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
-        "text_modifiers": {
-          "name": "text_modifiers",
+        "created_at": {
+          "name": "created_at",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -86,7 +100,7 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -102,8 +116,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "text": {
-          "name": "text",
+        "body": {
+          "name": "body",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

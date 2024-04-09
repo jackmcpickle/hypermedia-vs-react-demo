@@ -8,8 +8,6 @@ export async function getCartDb(
 ): Promise<Cart | undefined> {
     const cartCookie = cookie.get(CART_ID_COOKIE);
 
-    console.log({ CART_ID_COOKIE: cartCookie?.value });
-
     if (!cartCookie) {
         return;
     }
