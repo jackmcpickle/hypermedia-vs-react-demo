@@ -2,13 +2,12 @@
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
 interface Props {
-    image?: string;
     name: string;
     id: number;
     price: number;
 }
 
-const { image, name, price, id } = Astro.props;
+const { name, price, id } = Astro.props;
 ---
 
 <article

@@ -64,7 +64,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
         // get new cart items
         const allCartItems = await db.query.cartItemTable.findMany({
-            where: (cartItems) => eq(cartItems.cartId, cart.id),
+            where: (cartItems) => eq(cartItems.cartId, cart!.id),
         });
 
         return new Response(

@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core';
-import { sql, relations, Relations } from 'drizzle-orm';
+import { sql, relations } from 'drizzle-orm';
 import * as dotenv from 'dotenv';
 dotenv.config();
 

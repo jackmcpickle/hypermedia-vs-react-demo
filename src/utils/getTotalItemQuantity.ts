@@ -1,5 +1,4 @@
-import type { Dictionary } from 'lodash';
-import type { CartItem, CartItemWithProduct, Product } from '../../db/schema';
+import type { CartItem, CartItemWithProduct } from '../../db/schema';
 
 export function getTotalItemQuantity(
     items: (CartItem | CartItemWithProduct)[],
