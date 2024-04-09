@@ -27,8 +27,12 @@ export const cartTable = sqliteTable('cart', {
 
 export const cartItemTable = sqliteTable('cart_items', {
     id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-    productId: integer('productId').references(() => productTable.id),
-    cartId: integer('cartId').references(() => cartTable.id),
+    productId: integer('productId')
+        .references(() => productTable.id)
+        .notNull(),
+    cartId: integer('cartId')
+        .references(() => cartTable.id)
+        .notNull(),
     quantity: integer('quantity').notNull(),
 });
 
@@ -37,8 +41,14 @@ export const cartRelations = relations(cartTable, ({ many }) => ({
 }));
 
 export const cartItemTableRelations = relations(cartItemTable, ({ one }) => ({
-    cart: one(cartTable),
-    product: one(productTable),
+    cart: one(cartTable, {
+        fields: [cartItemTable.cartId],
+        references: [cartTable.id],
+    }),
+    product: one(productTable, {
+        fields: [cartItemTable.productId],
+        references: [productTable.id],
+    }),
 }));
 
 export const db = drizzle(libsqlClient, {
@@ -58,4 +68,5 @@ export type Cart = typeof cartTable.$inferSelect;
 export type CartWithItems = Cart & {
     items: CartItem[];
 };
+export type CartItemWithProduct = CartItem & { product: Product };
 export type NewCartItem = typeof cartItemTable.$inferInsert;

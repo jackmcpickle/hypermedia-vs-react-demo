@@ -1,20 +1,12 @@
 .htmx-indicator {
     display: none;
-    opacity: 0;
-    transition: opacity 500ms ease-in;
-}
-
-.htmx-indicator-hide {
-    transition: opacity 500ms ease-in;
-    opacity: 1
 }
 
 .htmx-request .htmx-indicator-hide {
-    opacity: 0;
+    display: none;
 }
 
 .htmx-request.htmx-indicator,
 .htmx-request .htmx-indicator {
     display: unset;
-    opacity: 1
 }

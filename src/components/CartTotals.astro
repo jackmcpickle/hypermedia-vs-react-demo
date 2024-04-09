@@ -1,0 +1,24 @@
+---
+import type { CartItemWithProduct } from '../../db/schema';
+import {
+    getTotalItemQuantity,
+    getTotalItemPrice,
+} from '../utils/getTotalItemQuantity';
+
+interface Props {
+    cartProducts: CartItemWithProduct[];
+}
+
+const { cartProducts } = Astro.props;
+---
+
+<div
+    id='cartTotal'
+    hx-swap='outerHTML'
+    hx-get='/cart/totals'
+    hx-trigger='cartupdate from:document'
+>
+    <hr class='my-8' />
+    <p>Items: {getTotalItemQuantity(cartProducts)}</p>
+    <p>Total: ${getTotalItemPrice(cartProducts)}</p>
+</div>

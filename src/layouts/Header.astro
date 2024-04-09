@@ -9,7 +9,10 @@ import { NAVIGATION } from '../constants';
 
     Off-canvas menu for mobile, show/hide based on off-canvas menu state.
   -->
-<div x-data='{ open: false }'>
+<div
+    transition:persist
+    x-data='{ open: false }'
+>
     <div
         class='relative z-40 lg:hidden'
         role='dialog'

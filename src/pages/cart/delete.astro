@@ -1,0 +1,24 @@
+---
+import { eq } from 'drizzle-orm';
+import { db, cartItemTable } from '../../../db/schema';
+import CartItems from '../../components/CartItems.astro';
+import { getCartItemsDb } from '../../utils/getCartItemsDb';
+
+const postData = await Astro.request.formData();
+
+const productId = postData.get('productId') as string;
+
+if (productId) {
+    const deleted = await db
+        .delete(cartItemTable)
+        .where(eq(cartItemTable.productId, Number(productId)))
+        .returning();
+
+    console.log('Deleted: ', deleted);
+    Astro.response.headers.set('HX-Trigger', 'cartupdate');
+}
+
+const items = await getCartItemsDb(Astro.cookies);
+---
+
+<CartItems cartProducts={items} />

@@ -28,7 +28,10 @@ const { image, name, price, id } = Astro.props;
                 class='absolute inset-0'
                 aria-hidden='true'
             ></span>
-            <h1 class='text-sm font-medium text-gray-900'>
+            <h1
+                class='text-lg font-medium text-gray-900'
+                transition:name={name}
+            >
                 {name}
             </h1>
             <p class='truncate text-sm text-gray-500'>${price}</p>

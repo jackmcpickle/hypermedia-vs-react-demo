@@ -41,9 +41,9 @@ const newCartItem = {
     quantity: Number(quantity),
 } satisfies NewCartItem;
 
-await db.insert(cartItemTable).values(newCartItem)
+await db.insert(cartItemTable).values(newCartItem);
 
-Astro.response.headers.set('HX-Trigger', 'cartadd');
+Astro.response.headers.set('HX-Trigger', 'cartupdate');
 
 addToCartMessage = 'Success';
 ---

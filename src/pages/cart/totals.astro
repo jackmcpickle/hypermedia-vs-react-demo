@@ -1,0 +1,8 @@
+---
+import CartTotals from '../../components/CartTotals.astro';
+import { getCartItemsDb } from '../../utils/getCartItemsDb';
+
+const items = await getCartItemsDb(Astro.cookies);
+---
+
+<CartTotals cartProducts={items} />

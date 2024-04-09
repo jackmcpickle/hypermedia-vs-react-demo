@@ -1,56 +1,15 @@
 ---
-import { db, type CartItem } from '../../../db/schema';
 import Heading from '../../components/Heading.astro';
+import CartItems from '../../components/CartItems.astro';
 import Layout from '../../layouts/Layout.astro';
-import { getCartDb } from '../../utils/getCartDb';
 import { getCartItemsDb } from '../../utils/getCartItemsDb';
-import groupBy from 'lodash/groupBy';
-import {
-    getTotalItemQuantity,
-    getTotalItemPrice,
-    getTotalItemPrices,
-} from '../../utils/getTotalItemQuantity';
-import { getProductsDb } from '../../utils/getProductsDb';
+import CartTotals from '../../components/CartTotals.astro';
 
-const cart = await getCartDb(Astro.cookies);
-let items: CartItem[] = [];
-if (cart) {
-    items = await getCartItemsDb(cart);
-}
-const itemsByProductid = groupBy(items, 'productId');
-const products = await getProductsDb();
-const cartProducts = products.filter((p) =>
-    items.some((i) => i.productId === p.id),
-);
+const items = await getCartItemsDb(Astro.cookies);
 ---
 
 <Layout>
     <Heading>Cart</Heading>
-    {items.length === 0 && <p>Cart is empty</p>}
-    <ul class='flex flex-col gap-4 my-8'>
-        {
-            cartProducts.map((product) => (
-                <li class='inline-flex items-center justify-between border rounded p-2 max-w-96'>
-                    <div>
-                        {getTotalItemQuantity(itemsByProductid[product.id])}{' '}
-                        &times;
-                        {product.name} - $
-                        {getTotalItemPrice(
-                            product,
-                            itemsByProductid[product.id],
-                        )}
-                    </div>
-                    <button
-                        hx-delete='/cart/delete'
-                        class='p-2 text-gray-500 float-right hover:text-black'
-                    >
-                        remove
-                    </button>
-                </li>
-            ))
-        }
-    </ul>
-    <hr class='my-8' />
-    <p>Items: {getTotalItemQuantity(items)}</p>
-    <p>Total: ${getTotalItemPrices(products, itemsByProductid)}</p>
+    <CartItems cartProducts={items} />
+    <CartTotals cartProducts={items} />
 </Layout>

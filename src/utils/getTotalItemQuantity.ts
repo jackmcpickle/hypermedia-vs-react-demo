@@ -1,20 +1,15 @@
 import type { Dictionary } from 'lodash';
-import type { CartItem, Product } from '../../db/schema';
+import type { CartItem, CartItemWithProduct, Product } from '../../db/schema';
 
-export function getTotalItemQuantity(items: CartItem[]): number {
+export function getTotalItemQuantity(
+    items: (CartItem | CartItemWithProduct)[],
+): number {
     return items.reduce((sum, item) => sum + item.quantity, 0);
 }
 
-export function getTotalItemPrice(product: Product, items: CartItem[]): number {
-    return items.reduce((sum, item) => sum + product.price * item.quantity, 0);
-}
-
-export function getTotalItemPrices(
-    products: Product[],
-    items: Dictionary<CartItem[]>,
-): number {
-    return products.reduce(
-        (sum, product) => sum + getTotalItemPrice(product, items[product.id]),
+export function getTotalItemPrice(items: CartItemWithProduct[]): number {
+    return items.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
         0,
     );
 }

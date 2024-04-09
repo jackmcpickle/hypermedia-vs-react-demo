@@ -22,7 +22,10 @@ const { name, description, price, id } = Astro.props;
         <div>
             <!-- Product info -->
             <div class='mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0'>
-                <h1 class='text-3xl font-bold tracking-tight text-gray-900'>
+                <h1
+                    class='text-3xl font-bold tracking-tight text-gray-900'
+                    transition:name={name}
+                >
                     {name}
                 </h1>
                 <p class='mt-3 text-3xl tracking-tight text-gray-900'>
