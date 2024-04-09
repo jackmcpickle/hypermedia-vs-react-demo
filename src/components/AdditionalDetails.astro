@@ -1,0 +1,78 @@
+<section
+    aria-labelledby='details-heading'
+    class='mt-12'
+>
+    <h2
+        id='details-heading'
+        class='sr-only'
+    >
+        Additional details
+    </h2>
+
+    <div class='divide-y divide-gray-200 border-t'>
+        <div>
+            <h3>
+                <!-- Expand/collapse question button -->
+                <button
+                    type='button'
+                    class='group relative flex w-full items-center justify-between py-6 text-left'
+                    aria-controls='disclosure-1'
+                    aria-expanded='false'
+                >
+                    <!-- Open: "text-indigo-600", Closed: "text-gray-900" -->
+                    <span class='text-gray-900 text-sm font-medium'
+                        >Features</span
+                    >
+                    <span class='ml-6 flex items-center'>
+                        <!-- Open: "hidden", Closed: "block" -->
+                        <svg
+                            class='block h-6 w-6 text-gray-400 group-hover:text-gray-500'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke-width='1.5'
+                            stroke='currentColor'
+                            aria-hidden='true'
+                        >
+                            <path
+                                stroke-linecap='round'
+                                stroke-linejoin='round'
+                                d='M12 4.5v15m7.5-7.5h-15'
+                            ></path>
+                        </svg>
+                        <!-- Open: "block", Closed: "hidden" -->
+                        <svg
+                            class='hidden h-6 w-6 text-indigo-400 group-hover:text-indigo-500'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke-width='1.5'
+                            stroke='currentColor'
+                            aria-hidden='true'
+                        >
+                            <path
+                                stroke-linecap='round'
+                                stroke-linejoin='round'
+                                d='M19.5 12h-15'
+                            ></path>
+                        </svg>
+                    </span>
+                </button>
+            </h3>
+            <div
+                class='prose prose-sm pb-6'
+                id='disclosure-1'
+            >
+                <ul role='list'>
+                    <li>Multiple strap configurations</li>
+                    <li>Spacious interior with top zip</li>
+                    <li>Leather handle and tabs</li>
+                    <li>Interior dividers</li>
+                    <li>Stainless strap loops</li>
+                    <li>Double stitched construction</li>
+                    <li>Water-resistant</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- More sections... -->
+    </div>
+</section>

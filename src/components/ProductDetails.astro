@@ -1,0 +1,47 @@
+---
+import AddToCartForm from '../pages/cart/add.astro';
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+interface Props {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+}
+
+const { name, description, price, id } = Astro.props;
+---
+
+<article class='relative flex items-center space-x-3 bg-white px-6 py-5'>
+    <div class='flex gap-10'>
+        <div
+            class='aspect-1 rounded-md text-gray-500 h-[400px] bg-gray-200 flex items-center justify-center'
+        >
+            <ImagePlaceholder />
+        </div>
+        <div>
+            <!-- Product info -->
+            <div class='mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0'>
+                <h1 class='text-3xl font-bold tracking-tight text-gray-900'>
+                    {name}
+                </h1>
+                <p class='mt-3 text-3xl tracking-tight text-gray-900'>
+                    ${price}
+                </p>
+            </div>
+
+            <div class='mt-6'>
+                <h3 class='sr-only'>Description</h3>
+
+                <div class='space-y-6 text-base text-gray-700'>
+                    <p>
+                        {description}
+                    </p>
+                </div>
+            </div>
+            <div class='mt-10 flex items-center'>
+                <AddToCartForm id={id} />
+            </div>
+        </div>
+    </div>
+</article>

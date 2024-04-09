@@ -1,0 +1,82 @@
+<!-- Colors -->
+<div>
+    <h3 class='text-sm text-gray-600'>Color</h3>
+
+    <fieldset class='mt-2'>
+        <legend class='sr-only'>Choose a color</legend>
+        <span class='flex items-center space-x-3'>
+            <!--
+                  Active and Checked: "ring ring-offset-1"
+                  Not Active and Checked: "ring-2"
+                -->
+            <label
+                class='relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-700'
+            >
+                <input
+                    type='radio'
+                    name='color-choice'
+                    value='Washed Black'
+                    class='sr-only'
+                    aria-labelledby='color-choice-0-label'
+                />
+                <span
+                    id='color-choice-0-label'
+                    class='sr-only'
+                    >Washed Black</span
+                >
+                <span
+                    aria-hidden='true'
+                    class='h-8 w-8 bg-gray-700 rounded-full border border-black border-opacity-10'
+                ></span>
+            </label>
+            <!--
+                  Active and Checked: "ring ring-offset-1"
+                  Not Active and Checked: "ring-2"
+                -->
+            <label
+                class='relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400'
+            >
+                <input
+                    type='radio'
+                    name='color-choice'
+                    value='White'
+                    class='sr-only'
+                    aria-labelledby='color-choice-1-label'
+                />
+                <span
+                    id='color-choice-1-label'
+                    class='sr-only'
+                    >White</span
+                >
+                <span
+                    aria-hidden='true'
+                    class='h-8 w-8 bg-white rounded-full border border-black border-opacity-10'
+                ></span>
+            </label>
+            <!--
+                  Active and Checked: "ring ring-offset-1"
+                  Not Active and Checked: "ring-2"
+                -->
+            <label
+                class='relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-500'
+            >
+                <input
+                    type='radio'
+                    name='color-choice'
+                    value='Washed Gray'
+                    class='sr-only'
+                    aria-labelledby='color-choice-2-label'
+                />
+                <span
+                    id='color-choice-2-label'
+                    class='sr-only'
+                    >Washed Gray</span
+                >
+                <span
+                    aria-hidden='true'
+                    class='h-8 w-8 bg-gray-500 rounded-full border border-black border-opacity-10'
+                ></span>
+            </label>
+        </span>
+    </fieldset>
+</div>

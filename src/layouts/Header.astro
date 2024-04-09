@@ -1,0 +1,141 @@
+---
+import CartStatus from '../pages/partials/CartStatus.astro';
+import Logo from './Logo.astro';
+import { NAVIGATION } from '../constants';
+---
+
+<!--
+    Mobile menu
+
+    Off-canvas menu for mobile, show/hide based on off-canvas menu state.
+  -->
+<div x-data='{ open: false }'>
+    <div
+        class='relative z-40 lg:hidden'
+        role='dialog'
+        aria-modal='true'
+    >
+        <div
+            x-show='open'
+            class='fixed inset-0 bg-black bg-opacity-25'
+            x-transition:enter='transition-opacity ease-linear duration-300'
+            x-transition:enter-start='opacity-0'
+            x-transition:enter-end='opacity-100'
+            x-transition:leave='transition-opacity ease-linear duration-300'
+            x-transition:leave-start='opacity-100'
+            x-transition:leave-end='opacity-0'
+        >
+        </div>
+
+        <div
+            class='fixed inset-0 z-40 flex'
+            x-show='open'
+            @click='open = false'
+            x-transition:enter='transition ease-in-out duration-300 transform'
+            x-transition:enter-start='-translate-x-full'
+            x-transition:enter-end='translate-x-0'
+            x-transition:leave='transition ease-in-out duration-300 transform'
+            x-transition:leave-start='translate-x-0'
+            x-transition:leave-end='-translate-x-full'
+        >
+            <div
+                class='relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl'
+            >
+                <div class='flex px-4 pb-2 pt-5'>
+                    <button
+                        type='button'
+                        x-on:click='open = ! open'
+                        class='-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'
+                    >
+                        <span class='sr-only'>Close menu</span>
+                        <svg
+                            class='h-6 w-6'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke-width='1.5'
+                            stroke='currentColor'
+                            aria-hidden='true'
+                        >
+                            <path
+                                stroke-linecap='round'
+                                stroke-linejoin='round'
+                                d='M6 18L18 6M6 6l12 12'
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class='space-y-6 border-t border-gray-200 px-4 py-6'>
+                    {
+                        NAVIGATION.map((nav) => (
+                            <div class='flow-root'>
+                                <a
+                                    href={nav.link}
+                                    class='flex items-center text-sm font-medium text-gray-700 hover:text-gray-800'
+                                >
+                                    {nav.name}
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class='relative z-10 bg-white'>
+        <nav
+            aria-label='Top'
+            class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
+        >
+            <div class='border-b border-gray-200'>
+                <div class='flex h-16 items-center justify-between'>
+                    <div class='flex flex-1 items-center lg:hidden'>
+                        <!-- Mobile menu toggle, controls the 'mobileMenuOpen' state. -->
+                        <button
+                            type='button'
+                            x-on:click='open = ! open'
+                            class='-ml-2 rounded-md bg-white p-2 text-gray-400'
+                        >
+                            <span class='sr-only'>Open menu</span>
+                            <svg
+                                class='h-6 w-6'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                stroke-width='1.5'
+                                stroke='currentColor'
+                                aria-hidden='true'
+                            >
+                                <path
+                                    stroke-linecap='round'
+                                    stroke-linejoin='round'
+                                    d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Flyout menus -->
+                    <div class='hidden lg:block lg:flex-1 lg:self-stretch'>
+                        <div class='flex h-full space-x-8'>
+                            {
+                                NAVIGATION.map((nav) => (
+                                    <a
+                                        href={nav.link}
+                                        class='flex items-center text-sm font-medium text-gray-700 hover:text-gray-800'
+                                    >
+                                        {nav.name}
+                                    </a>
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <Logo />
+                    <div class='flex flex-1 items-center justify-end'>
+                        <CartStatus />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>

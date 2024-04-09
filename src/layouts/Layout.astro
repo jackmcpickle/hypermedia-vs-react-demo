@@ -1,0 +1,42 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+
+import Header from './Header.astro';
+const { title } = Astro.props;
+---
+
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <link
+            rel='icon'
+            type='image/svg+xml'
+            href='/favicon.svg'
+        />
+        <meta
+            name='viewport'
+            content='width=device-width'
+        />
+        <meta
+            name='generator'
+            content={Astro.generator}
+        />
+        <title>{title}</title>
+        <ViewTransitions />
+        <link
+            rel='stylesheet'
+            href='/src/styles.css'
+        />
+        <script
+            global
+            defer
+            src='/htmx.min.js'
+        ></script>
+    </head>
+    <body>
+        <Header />
+        <div class='bg-gray-50 p-8'>
+            <slot />
+        </div>
+    </body>
+</html>

@@ -1,0 +1,102 @@
+---
+import { eq } from 'drizzle-orm';
+import {
+    db,
+    type Cart,
+    cartTable,
+    cartItemTable,
+    type NewCartItem,
+} from '../../../db/schema';
+import { CART_ID_COOKIE } from '../../constants';
+import { isNil } from '../../typeGuards';
+import SpinnerIcon from '../../components/SpinnerIcon.astro';
+interface Props {
+    id: number;
+}
+
+export const partial = true;
+
+const { id } = Astro.props;
+
+let addToCartMessage = 'Add to Cart';
+
+if (Astro.request.method === 'POST') {
+    const data = await Astro.request.formData();
+    const quantity = data.get('quantity');
+    const productId = data.get('productId');
+    // Validate the data - you'll probably want to do more than this
+    if (!quantity || !productId) {
+        throw new Error('Missing product details');
+    }
+
+    const product = await db.query.productTable.findFirst({
+        where: (products) => eq(products.id, Number(productId)),
+    });
+
+    if (!product) {
+        throw new Error('Product not found');
+    }
+
+    let cart: Cart | undefined = undefined;
+    const cookie = Astro.cookies.get(CART_ID_COOKIE);
+    console.log({ CART_ID_COOKIE: cookie?.value });
+
+    if (!cookie) {
+        const newCart = await db.insert(cartTable).values({}).returning();
+        Astro.cookies.set(CART_ID_COOKIE, newCart.at(0)!.id.toString());
+        cart = newCart.at(0);
+    } else {
+        const existingCart = await db.query.cartTable.findFirst({
+            where: (cart) => eq(cart.id, cookie.number()),
+        });
+        cart = existingCart;
+    }
+
+    if (isNil(cart)) {
+        throw new Error('Cart not found');
+    }
+
+    console.log({ cart, cookie });
+
+    const newCartItem = {
+        cartId: cart.id,
+        productId: product.id,
+        quantity: Number(quantity),
+    } satisfies NewCartItem;
+
+    const items = await db
+        .insert(cartItemTable)
+        .values(newCartItem)
+        .returning();
+
+    console.log({ items });
+
+    addToCartMessage = 'Success';
+}
+---
+
+<form hx-post='/cart/add'>
+    <div class='flex'>
+        <input
+            type='hidden'
+            value={id}
+            name='productId'
+        />
+        <input
+            type='number'
+            name='quantity'
+            id='quantity'
+            value='1'
+            step='1'
+            min='1'
+            class='rounded-l-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+        />
+        <button
+            type='submit'
+            class='flex max-w-xs flex-1 items-center justify-center rounded-r-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full'
+        >
+            <span class='htmx-indicator-hide'>{addToCartMessage}</span>
+            <SpinnerIcon class='h-6 w-6 htmx-indicator' />
+        </button>
+    </div>
+</form>

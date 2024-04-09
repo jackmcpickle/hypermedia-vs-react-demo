@@ -1,0 +1,22 @@
+---
+import { db } from '../../db/schema';
+import Heading from '../components/Heading.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Layout from '../layouts/Layout.astro';
+const products = await db.query.productTable.findMany();
+---
+
+<Layout>
+    <Heading>Products</Heading>
+    <div class='my-8 grid grid-cols-1 gap-4 sm:grid-cols-2'>
+        {
+            products.map((product) => (
+                <ProductCard
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                />
+            ))
+        }
+    </div>
+</Layout>
