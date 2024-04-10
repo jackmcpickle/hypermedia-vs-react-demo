@@ -1,14 +1,5 @@
 import { eq } from 'drizzle-orm';
-import {
-    cartItemTable,
-    cartTable,
-    db,
-    type Cart,
-    type NewCartItem,
-} from '../../../../db/schema';
 import { type APIRoute } from 'astro';
-import { CART_ID_COOKIE } from '../../../constants';
-import { isNil } from '../../../typeGuards';
 
 export const POST: APIRoute = async ({ request, cookies }) => {
     try {
