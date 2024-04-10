@@ -7,5 +7,11 @@
       "~/*": ["../*"]
     }
   },
-  "include": ["../db/schema.ts"]
+  "exclude": ["node_modules"],
+  "include": [
+    "../db/schema.ts",
+    "./src/**/*.astro",
+    "./src/**/*.tsx",
+    "./src/**/*.ts",
+  ]
 }
