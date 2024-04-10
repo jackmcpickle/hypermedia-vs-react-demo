@@ -1,9 +1,9 @@
 ---
-import Heading from '../../components/Heading.astro';
-import CartItems from '../../components/CartItems.astro';
-import Layout from '../../layouts/Layout.astro';
-import { getCartItemsDb } from '../../utils/getCartItemsDb';
-import CartTotals from '../../components/CartTotals.astro';
+import Heading from '@/components/Heading.astro';
+import CartItems from '@/components/CartItems.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getCartItemsDb } from '@/utils/getCartItemsDb';
+import CartTotals from '@/components/CartTotals.astro';
 
 const items = await getCartItemsDb(Astro.cookies);
 ---

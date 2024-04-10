@@ -1,10 +1,10 @@
 ---
 import { eq } from 'drizzle-orm';
-import { db, cartItemTable, type NewCartItem } from '../../../db/schema';
-import { isNil } from '../../typeGuards';
-import { createNewCartDb } from '../../utils/createNewCartDb';
-import { getCartDb } from '../../utils/getCartDb';
-import AddToCartForm from '../../components/AddToCartForm.astro';
+import { db, cartItemTable, type NewCartItem } from '~/db/schema';
+import { isNil } from '@/typeGuards';
+import { createNewCartDb } from '@/utils/createNewCartDb';
+import { getCartDb } from '@/utils/getCartDb';
+import AddToCartForm from '@/components/AddToCartForm.astro';
 
 export const partial = true;
 

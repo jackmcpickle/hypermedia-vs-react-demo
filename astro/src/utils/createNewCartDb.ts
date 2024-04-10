@@ -1,5 +1,5 @@
 import type { AstroCookies } from 'astro';
-import { cartTable, db, type Cart } from '../../db/schema';
+import { cartTable, db, type Cart } from '~/db/schema';
 import { CART_ID_COOKIE } from '../constants';
 
 export async function createNewCartDb(cookies: AstroCookies): Promise<Cart> {

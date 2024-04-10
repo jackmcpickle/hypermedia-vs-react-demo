@@ -1,10 +1,10 @@
 ---
 import groupBy from 'lodash/groupBy';
-import type { CartItemWithProduct } from '../../db/schema';
+import type { CartItemWithProduct } from '~/db/schema';
 import {
     getTotalItemPrice,
     getTotalItemQuantity,
-} from '../utils/getTotalItemQuantity';
+} from '@/utils/getTotalItemQuantity';
 
 interface Props {
     cartProducts: CartItemWithProduct[];

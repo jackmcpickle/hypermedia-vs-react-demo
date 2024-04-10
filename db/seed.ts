@@ -1,4 +1,6 @@
+import * as dotenv from 'dotenv';
 import { db, productTable, type NewProduct } from './schema';
+dotenv.config();
 
 const products = [
     {

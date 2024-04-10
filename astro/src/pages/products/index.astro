@@ -1,8 +1,8 @@
 ---
-import Heading from '../../components/Heading.astro';
-import ProductCard from '../../components/ProductCard.astro';
-import Layout from '../../layouts/Layout.astro';
-import { getProductsDb } from '../../utils/getProductsDb';
+import Heading from '@/components/Heading.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getProductsDb } from '@/utils/getProductsDb';
 
 const products = await getProductsDb();
 ---

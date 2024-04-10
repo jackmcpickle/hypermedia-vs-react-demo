@@ -1,4 +1,4 @@
-import type { CartItem, CartItemWithProduct } from '../../db/schema';
+import type { CartItem, CartItemWithProduct } from '~/db/schema';
 
 export function getTotalItemQuantity(
     items: (CartItem | CartItemWithProduct)[],

@@ -1,8 +1,8 @@
 ---
 import { eq } from 'drizzle-orm';
-import { db, cartItemTable } from '../../../db/schema';
-import CartItems from '../../components/CartItems.astro';
-import { getCartItemsDb } from '../../utils/getCartItemsDb';
+import { db, cartItemTable } from '~/db/schema';
+import CartItems from '@/components/CartItems.astro';
+import { getCartItemsDb } from '@/utils/getCartItemsDb';
 
 const postData = await Astro.request.formData();
 

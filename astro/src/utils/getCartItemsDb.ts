@@ -1,4 +1,4 @@
-import { db, type CartItemWithProduct } from '../../db/schema';
+import { db, type CartItemWithProduct } from '~/db/schema';
 import { eq } from 'drizzle-orm';
 import { getCartDb } from './getCartDb';
 import type { AstroCookies } from 'astro';

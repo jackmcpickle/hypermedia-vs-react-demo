@@ -1,9 +1,9 @@
 ---
-import type { CartItemWithProduct } from '../../db/schema';
+import type { CartItemWithProduct } from '~/db/schema';
 import {
     getTotalItemQuantity,
     getTotalItemPrice,
-} from '../utils/getTotalItemQuantity';
+} from '@/utils/getTotalItemQuantity';
 
 interface Props {
     cartProducts: CartItemWithProduct[];

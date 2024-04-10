@@ -1,8 +1,8 @@
 ---
 import { eq } from 'drizzle-orm';
-import { db } from '../../../db/schema';
-import ProductDetails from '../../components/ProductDetails.astro';
-import Layout from '../../layouts/Layout.astro';
+import { db } from '~/db/schema';
+import ProductDetails from '@/components/ProductDetails.astro';
+import Layout from '@/layouts/Layout.astro';
 const { productId } = Astro.params;
 
 const product = await db.query.productTable.findFirst({
