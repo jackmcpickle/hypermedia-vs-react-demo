@@ -1,15 +1,17 @@
+'use server';
 import groupBy from 'lodash/groupBy';
 import type { CartItemWithProduct } from '~/db/schema';
 import {
     getTotalItemPrice,
     getTotalItemQuantity,
 } from '@/utils/getTotalItemQuantity';
+import { deleteItem } from '@/app/cart/actions';
 
 interface CartItemsProps {
     cartProducts: CartItemWithProduct[];
 }
 
-export function CartItems({ cartProducts }: CartItemsProps) {
+export async function CartItems({ cartProducts }: CartItemsProps) {
     const itemsByProductid = groupBy(cartProducts, 'productId');
     return (
         <ul
@@ -34,11 +36,7 @@ export function CartItems({ cartProducts }: CartItemsProps) {
                                 {cartItems?.at(0)?.product?.name} - $
                                 {getTotalItemPrice(cartItems)}
                             </div>
-                            <form
-                                hx-delete='/cart/delete'
-                                hx-target='#cartItems'
-                                hx-swap='outerHTML'
-                            >
+                            <form action={deleteItem}>
                                 <input
                                     type='hidden'
                                     name='productId'
