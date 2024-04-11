@@ -1,7 +1,21 @@
-import { CartWithItems } from '~/db/schema';
-
 export interface CartContext {
-    count: 0;
-    items: CartWithItems[];
-    total: 0;
+    count: number;
+    items: CartItem[];
+    total: number;
+    cartId: string;
+}
+
+export interface CartItem {
+    id: string;
+    productId: string;
+    product: ProductItem;
+    cartId: string;
+    quantity: number;
+}
+
+export interface ProductItem {
+    id: string;
+    price: number;
+    name: string;
+    body: string;
 }

@@ -11,7 +11,6 @@ const { productId, addToCartMessage } = Astro.props;
 <form
     hx-post='/cart/add'
     hx-swap='outerHTML'
-    data-astro-reload
 >
     <div class='flex'>
         <input

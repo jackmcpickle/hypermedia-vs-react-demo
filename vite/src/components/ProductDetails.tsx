@@ -2,7 +2,7 @@ import { AddToCartForm } from './AddToCartForm';
 import { ImagePlaceholder } from './ImagePlaceholder';
 
 interface Props {
-    id: number;
+    id: string;
     name: string;
     price: number;
     description: string;

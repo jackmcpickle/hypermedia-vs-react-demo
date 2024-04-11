@@ -1,13 +1,8 @@
-import { getCart } from '@/api/getCart';
+import { getCart } from '@/api/db';
+import { initialCart } from '@/constants';
 import { CartContext } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { ReactNode, createContext, useContext } from 'react';
-
-const initialCart = {
-    count: 0,
-    items: [],
-    total: 0,
-} satisfies CartContext;
 
 const cartContext = createContext<CartContext>(initialCart);
 

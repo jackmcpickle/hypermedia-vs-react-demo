@@ -1,8 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
-import { clsx } from 'clsx';
-import { SpinnerIcon } from './SpinnerIcon';
+import { useFormState } from 'react-dom';
 import { addToCart } from '@/app/products/[id]/actions';
 import { Button } from './Button';
 
@@ -11,6 +9,7 @@ interface AddToCartFormProps {
 }
 
 const ADD_TO_CART_LABEL = 'Add to Cart';
+const ADD_TO_CART_SUCCESS = 'Success';
 
 export function AddToCartForm({ productId }: AddToCartFormProps) {
     const [quantity, setQuantity] = useState(1);
@@ -23,7 +22,7 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
     useEffect(() => {
         if (state.success) {
             setQuantity(1);
-            setBtnLabel('Success');
+            setBtnLabel(ADD_TO_CART_SUCCESS);
             setTimeout(() => setBtnLabel(ADD_TO_CART_LABEL), 1500);
         }
     }, [state]);

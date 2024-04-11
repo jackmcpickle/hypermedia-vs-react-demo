@@ -1,9 +1,10 @@
-import Link from 'next/link';
+import { Link } from '@tanstack/react-router';
+
 import { ImagePlaceholder } from './ImagePlaceholder';
 
 interface ProductCardProps {
     name: string;
-    id: number;
+    id: string;
     price: number;
 }
 
@@ -15,7 +16,8 @@ export function ProductCard({ name, price, id }: ProductCardProps) {
             </div>
             <section className='min-w-0 flex-1'>
                 <Link
-                    href={`/products/${id}`}
+                    to={`/products/$productId`}
+                    params={{ productId: `${id}` }}
                     className='focus:outline-none'
                 >
                     <span
